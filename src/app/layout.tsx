@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import { Poppins } from "next/font/google"
+import { Toaster } from "@/components/ui/toaster"
+import FirstLoadMsg from "@/components/FirstLoadMsg"
 
 const inter = Poppins({
   subsets: ["latin"],
@@ -22,7 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+
+        <Toaster />
+        <FirstLoadMsg />
+      </body>
     </html>
   )
 }
