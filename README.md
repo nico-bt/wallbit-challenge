@@ -1,5 +1,7 @@
 # Wallbit frontend challenge
 
+🔗 Live: https://wallbit-challenge-ashen.vercel.app/
+
 ## Techs:
 - Next
 - Tailwind + Shadcn
