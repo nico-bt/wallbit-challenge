@@ -3,6 +3,7 @@ import "./globals.css"
 import { Poppins } from "next/font/google"
 import { Toaster } from "@/components/ui/toaster"
 import FirstLoadMsg from "@/components/FirstLoadMsg"
+import { UserProviderWrapper } from "@/context/userContext"
 
 const inter = Poppins({
   subsets: ["latin"],
@@ -25,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <UserProviderWrapper>{children}</UserProviderWrapper>
 
         <Toaster />
         <FirstLoadMsg />

@@ -3,6 +3,7 @@ import Header from "@/components/Header"
 import { Suspense } from "react"
 import Form from "@/components/Form/Form"
 import { getProductById } from "@/lib/products"
+import CartTable from "@/components/CartTable/CartTable"
 
 type SearchParams = Promise<{ query: string | undefined }>
 
@@ -27,6 +28,8 @@ export default async function Home(props: { searchParams: SearchParams }) {
 
           <Form />
         </div>
+
+        <CartTable />
       </main>
 
       <Footer />

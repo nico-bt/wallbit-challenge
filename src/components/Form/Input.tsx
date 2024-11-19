@@ -1,11 +1,15 @@
+// Input itemId se pone en sync con query params
+// Y despues en "/" homepage, agarro ese query para buscar automaticamente el producto al tipear
+// y mostrarlo en preview
+
 "use client"
 import { useDebouncedCallback } from "use-debounce"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
-export default function Input() {
+export default function Input({ error }: { error: "cantidad" | "id" | "" }) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
-  const { replace, push } = useRouter()
+  const { replace } = useRouter()
   const WAITING_TIME_DEBOUNCE = 300
 
   const handleInputChange = useDebouncedCallback(async (input: string) => {
@@ -31,7 +35,11 @@ export default function Input() {
           placeholder="cantidad"
           className="bg-white rounded-lg p-2 border text-black focus:outline-blue-600"
           defaultValue={1}
+          style={error === "cantidad" ? { border: "red 3px solid" } : {}}
         />
+        {error === "cantidad" && (
+          <span className="text-sm text-red-600 pl-2 sm:absolute sm:-bottom-6">Mayor a 1</span>
+        )}
       </div>
 
       <div className="flex flex-col relative">
@@ -48,7 +56,11 @@ export default function Input() {
           onInput={(e) => handleInputChange((e.target as HTMLInputElement).value)}
           defaultValue={Number(searchParams?.get("query")) || undefined}
           autoFocus
+          style={error === "id" ? { border: "red 3px solid" } : {}}
         />
+        {error === "id" && (
+          <span className="text-sm text-red-600 pl-2 sm:absolute sm:-bottom-6">Entre 1 y 20</span>
+        )}
       </div>
     </>
   )
